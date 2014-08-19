@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+		body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{padding:0px;margin: 0px;}
+		fieldset,img{border：none;}
+		table{border-collapse: collapse;;border-spacing: 0px;}
+		ol,ul{list-style: none;}
+		address,caption,cite,code,dfn,em,strong,th,var{font-weight: normal;font-style: normal;}
+		caption,th{text-align: left;}
+		h1,h2,h3,h4,h5,h6{font-weight: normal;font-size: 100%;}
+		q:before,q:after{content: '';}
+		abbr,acronym{border: 0};
+		body{font:12px/1.5em "微软雅黑";background: #ff0;}
+		body{font:12px/1.5em "微软雅黑";background:#ff0;}
+		#box{width:500px;height:300px;background: #fff;position: absolute;left: 50%;top:50%;margin-left: -250px;margin-top: -150px;font:12px/1.5em "微软雅黑";}
+		.provice{width:350px;margin:20px auto;background: #f00;height: 30px;position: relative;border: 1px solid #f00;}
+		.provice strong{display: block;width:50px;height: 30px;line-height: 30px;color:#fff;padding-left: 10px;float: left;}
+		#selectedprovice{width: 200px;height:20px;margin-top: 5px;display: block;float:left;background: #fff;padding-left: 10px;background:#fff url(images/jian.png) no-repeat 190px 0px;color:#ccc;cursor:pointer;line-height: 20px;}
+		#allprovice {clear:both;width:350px;position: absolute;top:30px;left:-1px;background: #fff;border: 1px solid #ccc;border-top: none;display: none;z-index: 101;}
+		#allprovice li{border-bottom: 1px solid #ccc;height:30px;line-height: 30px;}
+		#allprovice li b{font-weight: bold;display: inline-block;width: 40px;text-align: center;}
+		#allprovice li span{padding-left:10px;cursor:pointer;}
+		#allprovice li span:hover{color: #f00;}
+		#layer{width:100%;height:100%;background:#ff0;position:absolute;top:0px;left:0px;z-index:100;filter:alpha(opacity=0);opacity:0;display: none;}
+		#selectedprovice span.show{color:#ccc;background-position:190px -20px}
+		#selectedprovice span.hide{color:#f00;background-position:190px 0px}
+	</style>
+	<script type="text/javascript">
+		function addLoadEvent(func){ 
+			var oldonload = window.onload; 
+			if(typeof window.onload!='function'){ 
+				window.onload = func; 
+				} else{ 
+					window.onload = function(){ 
+						oldonload(); 
+						func(); 
+					} 
+				} 
+		} 
+		function getDom(id){
+			return document.getElementById(id);
+
+		}
+		function showProvince(){
+			getDom("selectedprovice").onclick=showAllprovince;
+		}
+		function showAllprovince(){
+			getDom("allprovice").style.display="block";
+/*				getDom("selectedprovice").style.backgroundPosition="190px -20px";
+				
+				getDom("selectedprovice").style.color="#ccc";*/
+				getDom("selectedprovice").className="show";
+				getDom("layer").style.display="block";
+				getDom("layer").onclick=hideAllprovince;
+				
+				selectedProvince();
+		}
+		function hideAllprovince(){
+				getDom("allprovice").style.display="none";
+/*				getDom("selectedprovice").style.backgroundPosition="190px 0px";
+				getDom("selectedprovice").style.color="#000";*/
+				getDom("selectedprovice").className="hide";
+				getDom("layer").style.display="none";
+		}
+		function selectedProvince(){
+			var pro=getDom("allprovice").getElementsByTagName("li");
+			var links;
+			for(i=0;i<pro.length;i++){
+				links=pro[i].getElementsByTagName("span");
+				for(j=0;j<links.length;j++){
+					links[j].onclick=function(){
+						getDom("selectedprovice").innerHTML=this.innerHTML;
+						hideAllprovince();
+					}
+				}
+			}
+		}
+		addLoadEvent(showProvince);
+	</script>
+</head>
+<body>
+	<div id="box">
+		<div class="provice">
+			<strong>送货至:</strong>
+			<span id="selectedprovice">北京</span>
+			<ul id="allprovice">
+				<li><b>A</b><span>安徽</span></li>
+				<li><b>B</b><span>北京</span></li>
+				<li><b>C</b><span>长春</span></li>
+				<li><b>D</b><span>德州</span></li>
+				<li><b>E</b><span>河北</span></li>
+				<li><b>F</b><span>四川</span></li>
+				<li><b>G</b><span>广州</span></li>
+				<li><b>H</b><span>重庆</span></li>
+				<li><b>I</b><span>南京</span></li>
+			</ul>
+		</div>
+	</div>
+	<div id="layer">
+	</div>
+</body>
+</html>
