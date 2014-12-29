@@ -1,0 +1,11 @@
+@charset "utf-8"
+*{margin:0;padding:0;text-decoration: none;list-style: none;}
+ul li{list-style: none;}
+.fl{float:left;}
+.fr{float:right;}
+.fangda li, .fangda1 li{float:left;margin:20px;}
+.clear{width:0;height: 0;display: block;overflow: hidden;zoom:1;visibility: visible;clear: both;}
+.fangda li img{-webkit-transition: all .3s ease-in;-o-transition: all .3s ease-in;transition: all .3s ease-in;}
+.fangda img:hover{-webkit-transform: rotate(360deg) scale(1.5);-ms-transform: rotate(360deg) scale(1.5);-o-transform: rotate(360deg) scale(1.5);transform: rotate(360deg) scale(1.5);}
+.fangda1 li img{-webkit-transition: all .3s linear;-o-transition: all .3s linear;transition: all .3s linear;}
+.fangda1 img:hover{-webkit-transform: rotate(-360deg) scale(.5);-ms-transform: rotate(-360deg) scale(.5);-o-transform: rotate(-360deg) scale(.5);transform: rotate(-360deg) scale(.5);
